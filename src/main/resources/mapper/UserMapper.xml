@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace:填写映射当前的Mapper接口，所有的增删改查的参数和返回值类型，
+		就可以直接填写缩写，不区分大小写，直接通过方法名去找类型-->
+<mapper namespace="com.zks.dao.UserDao">
+    <!-- sql:里面可以写入一个共同的sql代码，用于提取重复的代码。
+        要使用该代码的时候就直接使用<include>标签
+        id:为提取的sql代码，取一个id，起标识作用
+         -->
+    <!--<resultMap id="user1" type="com.zks.model.User">-->
+        <!--<id column="id" property="id"></id>-->
+        <!--<result column="username" property="username"></result>-->
+        <!--<result column="password" property="password"></result>-->
+        <!--<result column="age" property="age"></result>-->
+
+    <!--</resultMap>-->
+
+    <!--<sql id="select">-->
+		<!--select * from t_user-->
+	<!--</sql>-->
+    <!--&lt;!&ndash; public User findUserById(int id);-->
+        <!--id:填写在XxxMapper接口中的方法名-->
+        <!--parameterType:填写参数的类型-->
+        <!--resultType:填写方法中返回值的类型，不用写全路径，不区分大小写-->
+    <!--&ndash;&gt;-->
+    <!--<select id="findUserById" parameterType="int" resultType="com.zks.model.User">-->
+        <!--&lt;!&ndash; include:用于加载提取公共的sql语句，与<sql>标签对应-->
+               <!--refid:填写<sql>标签中的id属性-->
+         <!--&ndash;&gt;-->
+        <!--<include refid="select"></include>-->
+        <!--where id = #{id}-->
+    <!--</select>-->
+    <!-- resultMap属性:与resultMap标签一起使用，填写resultMap标签中定义的id属性 -->
+    <select id="login" parameterType="com.zks.model.User" resultType="com.zks.model.User">
+		select * from t_user where id = #{user.id} and username = #{user.username} and password = #{user.password}
+	</select>
+
+</mapper>
